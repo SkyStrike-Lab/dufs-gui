@@ -127,10 +127,10 @@ svg {
 /* Header & Navigation */
 .head {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   gap: 0.75rem;
-  padding: 0.75rem 1.5rem;
+  padding: 0.65rem 1.5rem;
+  min-height: 54px;
   position: sticky;
   top: 0;
   z-index: 50;
@@ -591,63 +591,93 @@ svg {
   border-color: var(--text-accent);
 }
 
-/* Top Selection Bar */
-.selection-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: var(--bg-surface);
-  border: 1px solid var(--border-primary);
-  border-radius: var(--radius-md);
-  padding: 0.5rem 0.85rem;
-  margin-bottom: 0.75rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-}
-
-.selection-bar-left {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.selection-badge {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--text-accent);
-  background-color: var(--bg-hover);
-  padding: 0.2rem 0.6rem;
-  border-radius: var(--radius-full);
-}
-
-.selection-btn-link {
-  background: none;
-  border: none;
-  padding: 0;
-  font-size: 0.825rem;
-  color: var(--text-secondary);
-  cursor: pointer;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
-.selection-btn-link:hover {
-  color: var(--text-primary);
-}
-
-.selection-bar-right {
-  display: flex;
+/* Header Sticky Selection Toolbar */
+.header-selection {
+  display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--radius-full);
+  padding: 0.2rem 0.35rem 0.2rem 0.75rem;
+  box-shadow: var(--shadow-sm);
+  animation: fadeIn 0.15s ease-out;
+  height: 34px;
 }
 
-.selection-bar .batch-btn-download {
+.header-selection-badge {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-accent);
+  white-space: nowrap;
+}
+
+.header-selection-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.header-batch-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.775rem;
+  font-weight: 500;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  border: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  line-height: 1.2;
+}
+
+.header-batch-btn svg {
+  fill: currentColor;
+}
+
+.header-batch-btn-download {
   background-color: var(--bg-hover);
   color: var(--text-primary);
-  border: 1px solid var(--border-secondary);
+  border: 1px solid var(--border-primary);
 }
 
-.selection-bar .batch-btn-download:hover {
+.header-batch-btn-download:hover {
   background-color: var(--border-primary);
+  border-color: var(--border-secondary);
+}
+
+.header-batch-btn-delete {
+  background-color: var(--color-danger);
+  color: #ffffff;
+}
+
+.header-batch-btn-delete:hover {
+  background-color: var(--color-danger-hover);
+}
+
+.header-batch-btn-subtle {
+  background: transparent;
+  color: var(--text-secondary);
+  border: none;
+  padding: 0.25rem 0.45rem;
+}
+
+.header-batch-btn-subtle:hover {
+  color: var(--text-primary);
+  text-decoration: underline;
+}
+
+.header-batch-btn-clear {
+  background: transparent;
+  color: var(--text-tertiary);
+  border: none;
+  padding: 0.25rem 0.45rem;
+  font-size: 0.85rem;
+}
+
+.header-batch-btn-clear:hover {
+  color: var(--color-danger);
 }
 
 /* Floating Batch Action Dock */

@@ -74,6 +74,28 @@
         </svg>
       </div>
     </div>
+    <!-- Sticky Header Selection Toolbar -->
+    <div id="selectionBar" class="header-selection hidden">
+      <span class="header-selection-badge"><span id="topSelectedCount">0</span> selected</span>
+      <div class="header-selection-actions">
+        <button id="topBatchDownloadBtn" class="header-batch-btn header-batch-btn-download" type="button" title="Download selected">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+            <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+          </svg>
+          <span>Download</span>
+        </button>
+        <button id="topBatchDeleteBtn" class="header-batch-btn header-batch-btn-delete" type="button" title="Delete selected">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M6.854 7.146a.5.5 0 1 0-.708.708L7.293 9l-1.147 1.146a.5.5 0 0 0 .708.708L8 9.707l1.146 1.147a.5.5 0 0 0 .708-.708L8.707 9l1.147-1.146a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146z"/>
+            <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+          </svg>
+          <span>Delete</span>
+        </button>
+        <button id="topSelectAllBtn" class="header-batch-btn header-batch-btn-subtle" type="button" title="Select all items">Select all</button>
+        <button id="topClearBtn" class="header-batch-btn header-batch-btn-clear" type="button" title="Clear selection">✕</button>
+      </div>
+    </div>
     <form class="searchbar hidden">
       <div class="icon">
         <svg width="16" height="16" viewBox="0 0 16 16">
@@ -133,29 +155,6 @@
           </tr>
         </thead>
       </table>
-      <div id="selectionBar" class="selection-bar hidden">
-        <div class="selection-bar-left">
-          <span class="selection-badge"><span id="topSelectedCount">0</span> selected</span>
-          <button id="topSelectAllBtn" class="selection-btn-link" type="button">Select all</button>
-          <button id="topClearBtn" class="selection-btn-link" type="button">Deselect all</button>
-        </div>
-        <div class="selection-bar-right">
-          <button id="topBatchDownloadBtn" class="batch-btn batch-btn-download" type="button" title="Download selected">
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
-              <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
-              <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
-            </svg>
-            <span>Download</span>
-          </button>
-          <button id="topBatchDeleteBtn" class="batch-btn batch-btn-delete" type="button" title="Delete selected">
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
-              <path d="M6.854 7.146a.5.5 0 1 0-.708.708L7.293 9l-1.147 1.146a.5.5 0 0 0 .708.708L8 9.707l1.146 1.147a.5.5 0 0 0 .708-.708L8.707 9l1.147-1.146a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146z"/>
-              <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
-            </svg>
-            <span>Delete</span>
-          </button>
-        </div>
-      </div>
       <table class="paths-table hidden">
         <thead>
         </thead>
