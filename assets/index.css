@@ -267,6 +267,27 @@ svg {
   gap: 0.5rem;
 }
 
+.view-toggle-btn {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  transition: all 0.15s ease;
+}
+
+.view-toggle-btn:hover {
+  background-color: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.view-toggle-btn svg {
+  fill: currentColor;
+}
+
 .theme-toggle-btn {
   cursor: pointer;
   display: inline-flex;
@@ -939,3 +960,187 @@ body.drag-active::after {
   color: var(--text-accent);
   pointer-events: none;
 }
+
+/* ==========================================================================
+   Base Preview & Grid View Layout
+   ========================================================================== */
+
+.path-preview {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.path-preview .thumb-img {
+  display: none;
+}
+
+[data-view="grid"] .paths-table {
+  display: block;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+[data-view="grid"] .paths-table thead {
+  display: none;
+}
+
+[data-view="grid"] .paths-table tbody {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+  padding: 0.5rem 0 2.5rem;
+}
+
+[data-view="grid"] .paths-table tr.path-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: 0.85rem 0.65rem 0.75rem;
+  border-radius: var(--radius-lg);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-primary);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  min-height: 165px;
+  user-select: none;
+}
+
+[data-view="grid"] .paths-table tr.path-row:hover {
+  border-color: var(--border-secondary);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+[data-view="grid"] .paths-table tr.path-row.selected {
+  border-color: var(--text-accent);
+  background: var(--bg-selected) !important;
+  box-shadow: 0 0 0 1px var(--text-accent), var(--shadow-sm);
+}
+
+/* Checkbox in Grid Card */
+[data-view="grid"] .paths-table .cell-checkbox {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: auto;
+  padding: 0 !important;
+  border: none;
+  z-index: 3;
+}
+
+[data-view="grid"] .paths-table tr.path-row:not(.selected):not(:hover) .cell-checkbox input[type="checkbox"]:not(:checked) {
+  opacity: 0;
+}
+
+[data-view="grid"] .paths-table tr.path-row:hover .cell-checkbox input[type="checkbox"],
+[data-view="grid"] .paths-table tr.path-row.selected .cell-checkbox input[type="checkbox"] {
+  opacity: 1;
+}
+
+/* Actions in Grid Card */
+[data-view="grid"] .paths-table .cell-actions {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 2px 4px !important;
+  border: none;
+  border-radius: var(--radius-full);
+  background: var(--bg-surface);
+  box-shadow: var(--shadow-sm);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  z-index: 3;
+}
+
+[data-view="grid"] .paths-table tr.path-row:hover .cell-actions {
+  opacity: 1;
+}
+
+/* Preview / Icon in Grid Card */
+[data-view="grid"] .paths-table .cell-icon {
+  width: 100%;
+  padding: 0 !important;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 84px;
+  margin-top: 6px;
+  margin-bottom: 0.5rem;
+}
+
+[data-view="grid"] .paths-table .path-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+[data-view="grid"] .paths-table .path-preview .icon-svg svg {
+  width: 52px;
+  height: 52px;
+}
+
+[data-view="grid"] .paths-table .path-preview.has-thumb .icon-svg {
+  display: none;
+}
+
+[data-view="grid"] .paths-table .path-preview .thumb-img {
+  display: block;
+  max-width: 100%;
+  max-height: 84px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+/* Name cell in Grid Card */
+[data-view="grid"] .paths-table .cell-name {
+  width: 100%;
+  text-align: center;
+  padding: 0 !important;
+  border: none;
+  margin-bottom: 0.2rem;
+}
+
+[data-view="grid"] .paths-table .cell-name a {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+  padding: 0 4px;
+}
+
+[data-view="grid"] .paths-table .cell-name a:hover {
+  color: var(--text-accent);
+}
+
+/* Size cell in Grid Card */
+[data-view="grid"] .paths-table .cell-size {
+  width: 100%;
+  text-align: center;
+  padding: 0 !important;
+  border: none;
+  font-size: 0.725rem;
+  color: var(--text-tertiary);
+}
+
+/* Hide mtime in compact grid cards */
+[data-view="grid"] .paths-table .cell-mtime {
+  display: none;
+}
+

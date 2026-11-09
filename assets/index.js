@@ -135,6 +135,37 @@ function setupThemeToggle() {
   });
 }
 
+function setupViewMode() {
+  const btn = document.getElementById("viewToggleBtn");
+  if (!btn) return;
+
+  const iconGrid = btn.querySelector(".icon-grid");
+  const iconList = btn.querySelector(".icon-list");
+
+  function updateIcon(mode) {
+    if (mode === "grid") {
+      iconGrid?.classList.add("hidden");
+      iconList?.classList.remove("hidden");
+      btn.title = "Switch to list view";
+    } else {
+      iconGrid?.classList.remove("hidden");
+      iconList?.classList.add("hidden");
+      btn.title = "Switch to grid view";
+    }
+  }
+
+  const currentMode = document.documentElement.getAttribute("data-view") || "list";
+  updateIcon(currentMode);
+
+  btn.addEventListener("click", () => {
+    const isGrid = document.documentElement.getAttribute("data-view") === "grid";
+    const nextMode = isGrid ? "list" : "grid";
+    document.documentElement.setAttribute("data-view", nextMode);
+    localStorage.setItem("dufs-view", nextMode);
+    updateIcon(nextMode);
+  });
+}
+
 function showConfirmDialog(title, message) {
   return new Promise((resolve) => {
     const modal = document.getElementById("confirmModal");
@@ -548,6 +579,7 @@ async function ready() {
 
   addBreadcrumb(DATA.href, DATA.uri_prefix);
   setupThemeToggle();
+  setupViewMode();
 
   if (DATA.kind === "Index") {
     document.title = `Index of ${DATA.href} - Dufs`;
@@ -1040,6 +1072,10 @@ function addPath(file, index, showMove, showDelete) {
   </td>`;
 
   let sizeDisplay = isDir ? formatDirSize(file.size) : formatFileSize(file.size).join(" ");
+  const isImg = !isDir && [".jpg", ".jpeg", ".png", ".gif", ".svg", ".webp", ".ico", ".bmp", ".avif"].includes(extName(file.name).toLowerCase());
+  const previewHtml = isImg
+    ? `<div class="path-preview has-thumb"><img src="${url}" loading="lazy" alt="${encodedName}" class="thumb-img" onerror="this.parentElement.classList.remove('has-thumb');this.remove();" /><span class="icon-svg">${getPathSvg(file)}</span></div>`
+    : `<div class="path-preview"><span class="icon-svg">${getPathSvg(file)}</span></div>`;
 
   $pathsTableBody.insertAdjacentHTML("beforeend", `
 <tr id="addPath${index}" class="path-row" data-index="${index}">
@@ -1047,7 +1083,7 @@ function addPath(file, index, showMove, showDelete) {
     <input type="checkbox" class="select-item" data-index="${index}" ${canDelete ? "" : "disabled"} />
   </td>
   <td class="path cell-icon">
-    ${getPathSvg(file)}
+    ${previewHtml}
   </td>
   <td class="path cell-name">
     <a href="${url}" ${isDir ? "" : `target="_blank"`}>${encodedName}</a>
