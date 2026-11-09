@@ -127,43 +127,43 @@ function setupThemeToggle() {
       (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
   }
 
+  function updateTitle(theme) {
+    btn.title = theme === "dark" ? "Switch to light theme" : "Switch to dark theme";
+  }
+
+  updateTitle(currentTheme());
+
   btn.addEventListener("click", () => {
     const current = currentTheme();
     const next = current === "dark" ? "light" : "dark";
     document.documentElement.setAttribute("data-theme", next);
     localStorage.setItem("dufs-theme", next);
+    updateTitle(next);
   });
 }
 
 function setupViewMode() {
-  const btn = document.getElementById("viewToggleBtn");
-  if (!btn) return;
+  const listBtn = document.getElementById("viewListBtn");
+  const gridBtn = document.getElementById("viewGridBtn");
+  if (!listBtn || !gridBtn) return;
 
-  const iconGrid = btn.querySelector(".icon-grid");
-  const iconList = btn.querySelector(".icon-list");
-
-  function updateIcon(mode) {
+  function setMode(mode) {
+    document.documentElement.setAttribute("data-view", mode);
+    localStorage.setItem("dufs-view", mode);
     if (mode === "grid") {
-      iconGrid?.classList.add("hidden");
-      iconList?.classList.remove("hidden");
-      btn.title = "Switch to list view";
+      gridBtn.classList.add("active");
+      listBtn.classList.remove("active");
     } else {
-      iconGrid?.classList.remove("hidden");
-      iconList?.classList.add("hidden");
-      btn.title = "Switch to grid view";
+      listBtn.classList.add("active");
+      gridBtn.classList.remove("active");
     }
   }
 
-  const currentMode = document.documentElement.getAttribute("data-view") || "list";
-  updateIcon(currentMode);
+  const initial = document.documentElement.getAttribute("data-view") === "grid" ? "grid" : "list";
+  setMode(initial);
 
-  btn.addEventListener("click", () => {
-    const isGrid = document.documentElement.getAttribute("data-view") === "grid";
-    const nextMode = isGrid ? "list" : "grid";
-    document.documentElement.setAttribute("data-view", nextMode);
-    localStorage.setItem("dufs-view", nextMode);
-    updateIcon(nextMode);
-  });
+  listBtn.addEventListener("click", () => setMode("list"));
+  gridBtn.addEventListener("click", () => setMode("grid"));
 }
 
 function showConfirmDialog(title, message) {
