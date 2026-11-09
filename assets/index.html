@@ -3,12 +3,20 @@
 
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <noscript>
     <meta http-equiv="refresh" content="0; url=?noscript">
   </noscript>
   <link rel="icon" type="image/x-icon" href="__ASSETS_PREFIX__favicon.ico">
   <link rel="stylesheet" href="__ASSETS_PREFIX__index.css">
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem("dufs-theme");
+      if (savedTheme) {
+        document.documentElement.setAttribute("data-theme", savedTheme);
+      }
+    })();
+  </script>
 </head>
 
 <body>
@@ -78,6 +86,14 @@
       <input type="submit" hidden />
     </form>
     <div class="toolbox-right">
+      <div class="theme-toggle-btn control" id="themeToggleBtn" title="Toggle theme">
+        <svg class="icon-sun" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+        </svg>
+        <svg class="icon-moon hidden" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+        </svg>
+      </div>
       <div class="login-btn hidden" title="Login">
         <svg width="16" height="16" viewBox="0 0 16 16">
           <path fill-rule="evenodd"
@@ -117,6 +133,29 @@
           </tr>
         </thead>
       </table>
+      <div id="selectionBar" class="selection-bar hidden">
+        <div class="selection-bar-left">
+          <span class="selection-badge"><span id="topSelectedCount">0</span> selected</span>
+          <button id="topSelectAllBtn" class="selection-btn-link" type="button">Select all</button>
+          <button id="topClearBtn" class="selection-btn-link" type="button">Deselect all</button>
+        </div>
+        <div class="selection-bar-right">
+          <button id="topBatchDownloadBtn" class="batch-btn batch-btn-download" type="button" title="Download selected">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+              <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+            </svg>
+            <span>Download</span>
+          </button>
+          <button id="topBatchDeleteBtn" class="batch-btn batch-btn-delete" type="button" title="Delete selected">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
+              <path d="M6.854 7.146a.5.5 0 1 0-.708.708L7.293 9l-1.147 1.146a.5.5 0 0 0 .708.708L8 9.707l1.146 1.147a.5.5 0 0 0 .708-.708L8.707 9l1.147-1.146a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146z"/>
+              <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+            </svg>
+            <span>Delete</span>
+          </button>
+        </div>
+      </div>
       <table class="paths-table hidden">
         <thead>
         </thead>
@@ -129,6 +168,54 @@
       <textarea id="editor" class="editor hidden" aria-label="Editor" cols="10"></textarea>
     </div>
   </div>
+
+  <!-- Floating Batch Action Dock -->
+  <div id="batchActionDock" class="batch-dock hidden">
+    <div class="batch-dock-content">
+      <div class="batch-count">
+        <span id="selectedCount">0</span> selected
+      </div>
+      <div class="batch-btn-group">
+        <button id="batchDownloadBtn" class="batch-btn batch-btn-download" title="Download selected">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+            <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
+          </svg>
+          <span>Download</span>
+        </button>
+        <button id="batchDeleteBtn" class="batch-btn batch-btn-delete" title="Delete selected">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M6.854 7.146a.5.5 0 1 0-.708.708L7.293 9l-1.147 1.146a.5.5 0 0 0 .708.708L8 9.707l1.146 1.147a.5.5 0 0 0 .708-.708L8.707 9l1.147-1.146a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146z"/>
+            <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+          </svg>
+          <span>Delete</span>
+        </button>
+        <button id="batchClearBtn" class="batch-btn batch-btn-clear" title="Clear selection">
+          ✕
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirmation Modal -->
+  <div id="confirmModal" class="modal-backdrop hidden">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="modalTitle">Confirm Action</h3>
+      </div>
+      <div class="modal-body">
+        <p id="modalMessage">Are you sure?</p>
+      </div>
+      <div class="modal-footer">
+        <button id="modalCancelBtn" class="btn btn-secondary">Cancel</button>
+        <button id="modalConfirmBtn" class="btn btn-danger">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="toast-container"></div>
+
   <template id="index-data">__INDEX_DATA__</template>
   <script src="__ASSETS_PREFIX__index.js"></script>
 </body>

@@ -56,15 +56,21 @@ const IFRAME_FORMATS = [
 const MAX_SUBPATHS_COUNT = 1000;
 
 const ICONS = {
-  dir: `<svg height="16" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M13 4H7V3c0-.66-.31-1-1-1H1c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V5c0-.55-.45-1-1-1zM6 4H1V3h5v1z"></path></svg>`,
-  symlinkFile: `<svg height="16" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M8.5 1H1c-.55 0-1 .45-1 1v12c0 .55.45 1 1 1h10c.55 0 1-.45 1-1V4.5L8.5 1zM11 14H1V2h7l3 3v9zM6 4.5l4 3-4 3v-2c-.98-.02-1.84.22-2.55.7-.71.48-1.19 1.25-1.45 2.3.02-1.64.39-2.88 1.13-3.73.73-.84 1.69-1.27 2.88-1.27v-2H6z"></path></svg>`,
-  symlinkDir: `<svg height="16" viewBox="0 0 14 16" width="14"><path fill-rule="evenodd" d="M13 4H7V3c0-.66-.31-1-1-1H1c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1V5c0-.55-.45-1-1-1zM1 3h5v1H1V3zm6 9v-2c-.98-.02-1.84.22-2.55.7-.71.48-1.19 1.25-1.45 2.3.02-1.64.39-2.88 1.13-3.73C4.86 8.43 5.82 8 7.01 8V6l4 3-4 3H7z"></path></svg>`,
-  file: `<svg height="16" viewBox="0 0 12 16" width="12"><path fill-rule="evenodd" d="M6 5H2V4h4v1zM2 8h7V7H2v1zm0 2h7V9H2v1zm0 2h7v-1H2v1zm10-7.5V14c0 .55-.45 1-1 1H1c-.55 0-1-.45-1-1V2c0-.55.45-1 1-1h7.5L12 4.5zM11 5L8 2H1v12h10V5z"></path></svg>`,
-  download: `<svg width="16" height="16" viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/></svg>`,
-  move: `<svg width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.5 1.5A.5.5 0 0 0 1 2v4.8a2.5 2.5 0 0 0 2.5 2.5h9.793l-3.347 3.346a.5.5 0 0 0 .708.708l4.2-4.2a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 8.3H3.5A1.5 1.5 0 0 1 2 6.8V2a.5.5 0 0 0-.5-.5z"/></svg>`,
-  edit: `<svg width="16" height="16" viewBox="0 0 16 16"><path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/></svg>`,
-  delete: `<svg width="16" height="16" viewBox="0 0 16 16"><path d="M6.854 7.146a.5.5 0 1 0-.708.708L7.293 9l-1.147 1.146a.5.5 0 0 0 .708.708L8 9.707l1.146 1.147a.5.5 0 0 0 .708-.708L8.707 9l1.147-1.146a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146z"/><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/></svg>`,
-  view: `<svg width="16" height="16" viewBox="0 0 16 16"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1"/></svg>`,
+  dir: `<svg height="18" viewBox="0 0 16 16" width="18" fill="#eab308"><path d="M1.75 1A1.75 1.75 0 0 0 0 2.75v10.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0 0 16 13.25v-8.5A1.75 1.75 0 0 0 14.25 3H7.5a.25.25 0 0 1-.2-.1l-.9-1.2C6.07 1.26 5.55 1 5 1H1.75z"/></svg>`,
+  symlinkDir: `<svg height="18" viewBox="0 0 16 16" width="18" fill="#ca8a04"><path d="M1.75 1A1.75 1.75 0 0 0 0 2.75v10.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0 0 16 13.25v-8.5A1.75 1.75 0 0 0 14.25 3H7.5a.25.25 0 0 1-.2-.1l-.9-1.2C6.07 1.26 5.55 1 5 1H1.75z"/><path fill="#fff" d="M11 9v2H9v1h3V9h-1zm-4 4l3-3-1-1-3 3 1 1z"/></svg>`,
+  symlinkFile: `<svg height="18" viewBox="0 0 16 16" width="18" fill="#64748b"><path d="M4 1.75C4 .784 4.784 0 5.75 0h5.586a1.75 1.75 0 0 1 1.237.513l2.914 2.914c.328.328.513.774.513 1.237v9.586A1.75 1.75 0 0 1 14.25 16h-8.5A1.75 1.75 0 0 1 4 14.25V1.75z"/><path fill="#fff" d="M11 9v2H9v1h3V9h-1zm-4 4l3-3-1-1-3 3 1 1z"/></svg>`,
+  file: `<svg height="18" viewBox="0 0 16 16" width="18" fill="#94a3b8"><path d="M3.75 1.5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h8.5a2 2 0 0 0 2-2V6.5a.5.5 0 0 0-.146-.354l-4.5-4.5A.5.5 0 0 0 9.25 1.5h-5.5zm5.5 1v3.5a.5.5 0 0 0 .5.5H13L9.25 2.5z"/></svg>`,
+  fileImage: `<svg height="18" viewBox="0 0 16 16" width="18" fill="#10b981"><path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm3.5 3a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zM1.002 13v-2.5l3.5-3.5 3 3 4-4 3.5 3.5V13h-14z"/></svg>`,
+  fileVideo: `<svg height="18" viewBox="0 0 16 16" width="18" fill="#f43f5e"><path d="M0 3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3zm6.79 3.093A.5.5 0 0 0 6 6.5v3a.5.5 0 0 0 .79.407l3.5-1.5a.5.5 0 0 0 0-.814l-3.5-1.5z"/></svg>`,
+  fileAudio: `<svg height="18" viewBox="0 0 16 16" width="18" fill="#f97316"><path d="M9 13c0 1.105-1.12 2-2.5 2S4 14.105 4 13s1.12-2 2.5-2c.397 0 .769.076 1.096.21A3.993 3.993 0 0 0 7 10V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2.5a.5.5 0 0 1-.5.5H9v7z"/></svg>`,
+  fileArchive: `<svg height="18" viewBox="0 0 16 16" width="18" fill="#eab308"><path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H2zm6 1.5h1.5v1H8v-1zm0 2h1.5v1H8v-1zm0 2h1.5v1H8v-1zm0 2h1.5v1H8v-1zm-1 3h3v2.5H7V11.5z"/></svg>`,
+  fileCode: `<svg height="18" viewBox="0 0 16 16" width="18" fill="#06b6d4"><path d="M10.478 1.647a.5.5 0 1 0-.956-.294l-4 13a.5.5 0 0 0 .956.294l4-13zM4.854 4.146a.5.5 0 0 1 0 .708L1.707 8l3.147 3.146a.5.5 0 0 1-.708.708l-3.5-3.5a.5.5 0 0 1 0-.708l3.5-3.5a.5.5 0 0 1 .708 0zm6.292 0a.5.5 0 0 0 0 .708L14.293 8l-3.147 3.146a.5.5 0 0 0 .708.708l3.5-3.5a.5.5 0 0 0 0-.708l-3.5-3.5a.5.5 0 0 0-.708 0z"/></svg>`,
+  filePdf: `<svg height="18" viewBox="0 0 16 16" width="18" fill="#ef4444"><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/><path d="M4.5 12h1v-1.5H7a1 1 0 0 0 1-1v-1a1 1 0 0 0-1-1H4.5V12zm1-2.5V8H7v1.5H5.5z"/></svg>`,
+  download: `<svg width="15" height="15" viewBox="0 0 16 16"><path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/><path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/></svg>`,
+  move: `<svg width="15" height="15" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.5 1.5A.5.5 0 0 0 1 2v4.8a2.5 2.5 0 0 0 2.5 2.5h9.793l-3.347 3.346a.5.5 0 0 0 .708.708l4.2-4.2a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 8.3H3.5A1.5 1.5 0 0 1 2 6.8V2a.5.5 0 0 0-.5-.5z"/></svg>`,
+  edit: `<svg width="15" height="15" viewBox="0 0 16 16"><path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/></svg>`,
+  delete: `<svg width="15" height="15" viewBox="0 0 16 16"><path d="M6.854 7.146a.5.5 0 1 0-.708.708L7.293 9l-1.147 1.146a.5.5 0 0 0 .708.708L8 9.707l1.146 1.147a.5.5 0 0 0 .708-.708L8.707 9l1.147-1.146a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146z"/><path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/></svg>`,
+  view: `<svg width="15" height="15" viewBox="0 0 16 16"><path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1"/></svg>`,
 }
 
 /**
@@ -108,6 +114,394 @@ let $logoutBtn;
  * @type Element
  */
 let $userName;
+
+const selectedIndices = new Set();
+let lastCheckedIndex = null;
+
+function setupThemeToggle() {
+  const btn = document.getElementById("themeToggleBtn");
+  if (!btn) return;
+
+  function currentTheme() {
+    return document.documentElement.getAttribute("data-theme") ||
+      (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+  }
+
+  btn.addEventListener("click", () => {
+    const current = currentTheme();
+    const next = current === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    localStorage.setItem("dufs-theme", next);
+  });
+}
+
+function showConfirmDialog(title, message) {
+  return new Promise((resolve) => {
+    const modal = document.getElementById("confirmModal");
+    const titleEl = document.getElementById("modalTitle");
+    const msgEl = document.getElementById("modalMessage");
+    const cancelBtn = document.getElementById("modalCancelBtn");
+    const confirmBtn = document.getElementById("modalConfirmBtn");
+
+    if (!modal) {
+      return resolve(confirm(message));
+    }
+
+    titleEl.textContent = title;
+    msgEl.textContent = message;
+    modal.classList.remove("hidden");
+
+    function cleanup(result) {
+      modal.classList.add("hidden");
+      cancelBtn.removeEventListener("click", onCancel);
+      confirmBtn.removeEventListener("click", onConfirm);
+      window.removeEventListener("keydown", onKeyDown);
+      resolve(result);
+    }
+
+    function onCancel() { cleanup(false); }
+    function onConfirm() { cleanup(true); }
+    function onKeyDown(e) {
+      if (e.key === "Escape") cleanup(false);
+      else if (e.key === "Enter") cleanup(true);
+    }
+
+    cancelBtn.addEventListener("click", onCancel);
+    confirmBtn.addEventListener("click", onConfirm);
+    window.addEventListener("keydown", onKeyDown);
+  });
+}
+
+function showToast(message, type = "info", duration = 3000) {
+  const container = document.getElementById("toastContainer");
+  if (!container) return;
+
+  const toast = document.createElement("div");
+  toast.className = `toast toast-${type}`;
+
+  let iconSvg = "";
+  if (type === "success") {
+    iconSvg = `<svg width="16" height="16" viewBox="0 0 16 16" fill="#10b981"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/></svg>`;
+  } else if (type === "error") {
+    iconSvg = `<svg width="16" height="16" viewBox="0 0 16 16" fill="#ef4444"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/></svg>`;
+  } else {
+    iconSvg = `<svg width="16" height="16" viewBox="0 0 16 16" fill="#2563eb"><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/></svg>`;
+  }
+
+  toast.innerHTML = `<span style="display:inline-flex;align-items:center;">${iconSvg}</span><span>${message}</span>`;
+  container.appendChild(toast);
+
+  setTimeout(() => {
+    toast.style.opacity = "0";
+    toast.style.transform = "translateY(12px) scale(0.95)";
+    setTimeout(() => toast.remove(), 250);
+  }, duration);
+}
+
+function canDeleteFile(file) {
+  if (!file) return false;
+  if (file.readonly_descendant) return false;
+  return file.allow_delete ?? DATA.allow_delete ?? false;
+}
+
+function canUploadFile(file) {
+  if (!file) return false;
+  return file.allow_upload ?? DATA.allow_upload ?? false;
+}
+
+function canMoveFile(file) {
+  return canUploadFile(file) && canDeleteFile(file);
+}
+
+function selectAllItems(state) {
+  if (!DATA.paths) return;
+  for (let i = 0; i < DATA.paths.length; i++) {
+    const file = DATA.paths[i];
+    if (file && canDeleteFile(file)) {
+      if (state) selectedIndices.add(i);
+      else selectedIndices.delete(i);
+    }
+  }
+  updateSelectionUI();
+}
+
+function updateSelectionUI() {
+  const selectAllCb = document.getElementById("selectAllCheckbox");
+  const batchDock = document.getElementById("batchActionDock");
+  const selectionBar = document.getElementById("selectionBar");
+  const countEl = document.getElementById("selectedCount");
+  const topCountEl = document.getElementById("topSelectedCount");
+
+  if (DATA.paths) {
+    for (let i = 0; i < DATA.paths.length; i++) {
+      const row = document.getElementById(`addPath${i}`);
+      const cb = row?.querySelector(".select-item");
+      const isSelected = selectedIndices.has(i);
+      if (row) row.classList.toggle("selected", isSelected);
+      if (cb) cb.checked = isSelected;
+    }
+  }
+
+  const count = selectedIndices.size;
+  if (countEl) countEl.textContent = count;
+  if (topCountEl) topCountEl.textContent = count;
+
+  if (batchDock) {
+    if (count > 0) {
+      batchDock.classList.remove("hidden");
+    } else {
+      batchDock.classList.add("hidden");
+    }
+  }
+
+  if (selectionBar) {
+    if (count > 0) {
+      selectionBar.classList.remove("hidden");
+    } else {
+      selectionBar.classList.add("hidden");
+    }
+  }
+
+  if (selectAllCb && DATA.paths) {
+    const selectableTotal = DATA.paths.filter(p => p && canDeleteFile(p)).length;
+    if (selectableTotal === 0) {
+      selectAllCb.checked = false;
+      selectAllCb.indeterminate = false;
+      selectAllCb.disabled = true;
+    } else if (count === 0) {
+      selectAllCb.checked = false;
+      selectAllCb.indeterminate = false;
+      selectAllCb.disabled = false;
+    } else if (count >= selectableTotal) {
+      selectAllCb.checked = true;
+      selectAllCb.indeterminate = false;
+      selectAllCb.disabled = false;
+    } else {
+      selectAllCb.checked = false;
+      selectAllCb.indeterminate = true;
+      selectAllCb.disabled = false;
+    }
+  }
+}
+
+function setupBatchActions() {
+  const batchClearBtn = document.getElementById("batchClearBtn");
+  const batchDeleteBtn = document.getElementById("batchDeleteBtn");
+  const batchDownloadBtn = document.getElementById("batchDownloadBtn");
+
+  const topSelectAllBtn = document.getElementById("topSelectAllBtn");
+  const topClearBtn = document.getElementById("topClearBtn");
+  const topBatchDeleteBtn = document.getElementById("topBatchDeleteBtn");
+  const topBatchDownloadBtn = document.getElementById("topBatchDownloadBtn");
+
+  if (topSelectAllBtn) {
+    topSelectAllBtn.addEventListener("click", () => selectAllItems(true));
+  }
+
+  if (topClearBtn) {
+    topClearBtn.addEventListener("click", () => {
+      selectedIndices.clear();
+      updateSelectionUI();
+    });
+  }
+
+  if (topBatchDeleteBtn) {
+    topBatchDeleteBtn.addEventListener("click", batchDeleteSelected);
+  }
+
+  if (topBatchDownloadBtn) {
+    topBatchDownloadBtn.addEventListener("click", batchDownloadSelected);
+  }
+
+  if (batchClearBtn) {
+    batchClearBtn.addEventListener("click", () => {
+      selectedIndices.clear();
+      updateSelectionUI();
+    });
+  }
+
+  if (batchDeleteBtn) {
+    batchDeleteBtn.addEventListener("click", batchDeleteSelected);
+  }
+
+  if (batchDownloadBtn) {
+    batchDownloadBtn.addEventListener("click", batchDownloadSelected);
+  }
+
+  window.addEventListener("keydown", (e) => {
+    const tag = e.target.tagName;
+    if (tag === "INPUT" || tag === "TEXTAREA" || e.target.isContentEditable) {
+      return;
+    }
+
+    if (e.key === "Escape") {
+      if (selectedIndices.size > 0) {
+        selectedIndices.clear();
+        updateSelectionUI();
+      }
+    } else if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "a") {
+      e.preventDefault();
+      selectAllItems(true);
+    }
+  });
+
+  if ($pathsTableBody) {
+    $pathsTableBody.addEventListener("click", (e) => {
+      if (e.target.closest("a") || e.target.closest(".action-btn")) {
+        return;
+      }
+      const row = e.target.closest("tr.path-row");
+      if (!row) return;
+      const index = parseInt(row.dataset.index, 10);
+      const file = DATA.paths[index];
+      if (!file || !canDeleteFile(file)) return;
+
+      const checkbox = row.querySelector(".select-item");
+      if (!checkbox || checkbox.disabled) return;
+
+      if (e.target === checkbox) {
+        if (e.shiftKey && lastCheckedIndex !== null) {
+          const start = Math.min(lastCheckedIndex, index);
+          const end = Math.max(lastCheckedIndex, index);
+          const state = checkbox.checked;
+          for (let i = start; i <= end; i++) {
+            const item = DATA.paths[i];
+            if (item && canDeleteFile(item)) {
+              if (state) selectedIndices.add(i);
+              else selectedIndices.delete(i);
+              const cb = document.querySelector(`.select-item[data-index="${i}"]`);
+              if (cb) cb.checked = state;
+            }
+          }
+        } else {
+          if (checkbox.checked) selectedIndices.add(index);
+          else selectedIndices.delete(index);
+          lastCheckedIndex = index;
+        }
+        updateSelectionUI();
+        return;
+      }
+
+      checkbox.checked = !checkbox.checked;
+      if (checkbox.checked) selectedIndices.add(index);
+      else selectedIndices.delete(index);
+      lastCheckedIndex = index;
+      updateSelectionUI();
+    });
+  }
+}
+
+async function batchDeleteSelected() {
+  const indices = Array.from(selectedIndices).filter(i => {
+    const f = DATA.paths[i];
+    return f && canDeleteFile(f);
+  });
+
+  if (indices.length === 0) return;
+
+  const confirmed = await showConfirmDialog(
+    "Delete Multiple Items",
+    `Are you sure you want to permanently delete ${indices.length} selected item${indices.length > 1 ? "s" : ""}?`
+  );
+  if (!confirmed) return;
+
+  showToast(`Deleting ${indices.length} item(s)...`, "info", 4000);
+
+  const concurrency = 4;
+  let active = 0;
+  let cursor = 0;
+  let successCount = 0;
+  let failedCount = 0;
+
+  try {
+    await checkAuth();
+  } catch (err) {
+    showToast(`Auth error: ${err.message}`, "error");
+    return;
+  }
+
+  await new Promise((resolve) => {
+    function next() {
+      if (cursor >= indices.length && active === 0) {
+        return resolve();
+      }
+      while (active < concurrency && cursor < indices.length) {
+        const idx = indices[cursor++];
+        const file = DATA.paths[idx];
+        if (!file) continue;
+        active++;
+        fetch(newUrl(file.name), { method: "DELETE" })
+          .then(async (res) => {
+            await assertResOK(res);
+            document.getElementById(`addPath${idx}`)?.remove();
+            DATA.paths[idx] = null;
+            selectedIndices.delete(idx);
+            successCount++;
+          })
+          .catch((err) => {
+            console.error(`Failed to delete ${file.name}:`, err);
+            failedCount++;
+          })
+          .finally(() => {
+            active--;
+            next();
+          });
+      }
+    }
+    next();
+  });
+
+  if (failedCount === 0) {
+    showToast(`Successfully deleted ${successCount} item${successCount > 1 ? "s" : ""}`, "success");
+  } else {
+    showToast(`Deleted ${successCount} item(s), ${failedCount} failed`, "error");
+  }
+
+  if (!DATA.paths.find(v => !!v)) {
+    $pathsTable.classList.add("hidden");
+    $emptyFolder.textContent = DIR_EMPTY_NOTE;
+    $emptyFolder.classList.remove("hidden");
+  }
+
+  updateSelectionUI();
+}
+
+function batchDownloadSelected() {
+  const indices = Array.from(selectedIndices).filter(i => !!DATA.paths[i]);
+  if (indices.length === 0) return;
+
+  if (indices.length === 1) {
+    const file = DATA.paths[indices[0]];
+    const url = newUrl(file.name);
+    if (file.path_type.endsWith("Dir")) {
+      window.open(url + "/?zip", "_blank");
+    } else {
+      triggerDownload(url, file.name);
+    }
+    return;
+  }
+
+  showToast(`Downloading ${indices.length} items...`, "info");
+  indices.forEach((idx, i) => {
+    const file = DATA.paths[idx];
+    if (!file) return;
+    const url = newUrl(file.name);
+    const downloadUrl = file.path_type.endsWith("Dir") ? (url + "/?zip") : url;
+    setTimeout(() => {
+      triggerDownload(downloadUrl, file.name);
+    }, i * 250);
+  });
+}
+
+function triggerDownload(url, filename) {
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename || "";
+  a.style.display = "none";
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => a.remove(), 1000);
+}
 
 // manage unload event to prevent leaving with uploads in progress
 const beforeUnloadHandler = (event) => {
@@ -153,6 +547,7 @@ async function ready() {
   window.addEventListener('beforeunload', beforeUnloadHandler);
 
   addBreadcrumb(DATA.href, DATA.uri_prefix);
+  setupThemeToggle();
 
   if (DATA.kind === "Index") {
     document.title = `Index of ${DATA.href} - Dufs`;
@@ -220,7 +615,7 @@ class Uploader {
     $uploadersTable.insertAdjacentHTML("beforeend", `
   <tr id="upload${idx}" class="uploader">
     <td class="path cell-icon">
-      ${getPathSvg()}
+      ${getPathSvg({ name, path_type: "File" })}
     </td>
     <td class="path cell-name">
       <a href="${url}">${encodedName}</a>
@@ -358,7 +753,11 @@ class Uploader {
     this.$eta.textContent = "";
     failUploaders.delete(this.idx);
     Uploader.runnings--;
-    Uploader.runQueue();
+    if (Uploader.queues.length === 0 && Uploader.runnings === 0 && failUploaders.size === 0) {
+      setTimeout(() => location.reload(), 600);
+    } else {
+      Uploader.runQueue();
+    }
   }
 
   fail(reason = "") {
@@ -437,6 +836,8 @@ function addBreadcrumb(href, uri_prefix) {
 }
 
 async function setupIndexPage() {
+  setupBatchActions();
+
   if (DATA.allow_archive) {
     const $download = document.querySelector(".download");
     $download.href = baseUrl() + "?zip";
@@ -491,6 +892,9 @@ function renderPathsTableHead() {
   ];
   $pathsTableHead.insertAdjacentHTML("beforeend", `
     <tr>
+      <th class="cell-checkbox">
+        <input type="checkbox" id="selectAllCheckbox" title="Select all" />
+      </th>
       ${headerItems.map(item => {
     let svg = `<svg width="12" height="12" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/></svg>`;
     let order = "desc";
@@ -509,6 +913,13 @@ function renderPathsTableHead() {
       <th class="cell-actions">Actions</th>
     </tr>
   `);
+
+  const selectAllCb = document.getElementById("selectAllCheckbox");
+  if (selectAllCb) {
+    selectAllCb.addEventListener("change", (e) => {
+      selectAllItems(e.target.checked);
+    });
+  }
 }
 
 /**
@@ -524,12 +935,13 @@ function renderPathsTableBody() {
     // at least one entry. Rows without permission render the action disabled.
     const showMove =
       (DATA.allow_upload && DATA.allow_delete) ||
-      DATA.paths.some((p) => p?.allow_upload && p?.allow_delete);
+      DATA.paths.some((p) => canMoveFile(p));
     const showDelete =
-      DATA.allow_delete || DATA.paths.some((p) => p?.allow_delete);
+      DATA.allow_delete || DATA.paths.some((p) => canDeleteFile(p));
     for (let i = 0; i < len; i++) {
       addPath(DATA.paths[i], i, showMove, showDelete);
     }
+    updateSelectionUI();
   } else {
     $emptyFolder.textContent = DIR_EMPTY_NOTE;
     $emptyFolder.classList.remove("hidden");
@@ -590,7 +1002,7 @@ function addPath(file, index, showMove, showDelete) {
       <a class="dlwt" href="${url}" title="Download file" download>${ICONS.download}</a>
     </div>`;
   }
-  const canMove = file.allow_upload && file.allow_delete;
+  const canMove = canMoveFile(file);
   const canEdit = !isDir && canMove;
   if (showMove) {
     if (canMove) {
@@ -606,8 +1018,9 @@ function addPath(file, index, showMove, showDelete) {
       }
     }
   }
+  const canDelete = canDeleteFile(file);
   if (showDelete) {
-    if (file.allow_delete) {
+    if (canDelete) {
       actionDelete = `
     <div onclick="deletePath(${index})" class="action-btn" id="deleteBtn${index}" title="Delete">${ICONS.delete}</div>`;
     } else {
@@ -629,9 +1042,12 @@ function addPath(file, index, showMove, showDelete) {
   let sizeDisplay = isDir ? formatDirSize(file.size) : formatFileSize(file.size).join(" ");
 
   $pathsTableBody.insertAdjacentHTML("beforeend", `
-<tr id="addPath${index}">
+<tr id="addPath${index}" class="path-row" data-index="${index}">
+  <td class="cell-checkbox">
+    <input type="checkbox" class="select-item" data-index="${index}" ${canDelete ? "" : "disabled"} />
+  </td>
   <td class="path cell-icon">
-    ${getPathSvg(file.path_type)}
+    ${getPathSvg(file)}
   </td>
   <td class="path cell-name">
     <a href="${url}" ${isDir ? "" : `target="_blank"`}>${encodedName}</a>
@@ -649,8 +1065,24 @@ function setupDropzone() {
       e.stopPropagation();
     });
   });
+
+  let dragCounter = 0;
+  document.addEventListener("dragenter", () => {
+    dragCounter++;
+    document.body.classList.add("drag-active");
+  });
+  document.addEventListener("dragleave", () => {
+    dragCounter--;
+    if (dragCounter <= 0) {
+      dragCounter = 0;
+      document.body.classList.remove("drag-active");
+    }
+  });
+
   document.addEventListener("drop", async e => {
-    if (!e.dataTransfer.items[0].webkitGetAsEntry) {
+    dragCounter = 0;
+    document.body.classList.remove("drag-active");
+    if (!e.dataTransfer?.items?.[0]?.webkitGetAsEntry) {
       const files = Array.from(e.dataTransfer.files).filter(v => v.size > 0);
       for (const file of files) {
         new Uploader(file, []).upload();
@@ -722,8 +1154,28 @@ function setupSearch() {
     }
     location.href = href;
   });
+
+  const searchInput = document.getElementById("search");
   if (PARAMS.q) {
-    document.getElementById('search').value = PARAMS.q;
+    searchInput.value = PARAMS.q;
+  }
+
+  // Live in-page filter
+  if (searchInput) {
+    searchInput.addEventListener("input", (e) => {
+      const val = e.target.value.trim().toLowerCase();
+      const rows = $pathsTableBody.querySelectorAll("tr.path-row");
+      rows.forEach(row => {
+        const idx = parseInt(row.dataset.index, 10);
+        const file = DATA.paths[idx];
+        if (!file) return;
+        if (!val || file.name.toLowerCase().includes(val)) {
+          row.classList.remove("hidden");
+        } else {
+          row.classList.add("hidden");
+        }
+      });
+    });
   }
 }
 
@@ -839,6 +1291,8 @@ async function deletePath(index) {
   await doDeletePath(file.name, newUrl(file.name), () => {
     document.getElementById(`addPath${index}`)?.remove();
     DATA.paths[index] = null;
+    selectedIndices.delete(index);
+    updateSelectionUI();
     if (!DATA.paths.find(v => !!v)) {
       $pathsTable.classList.add("hidden");
       $emptyFolder.textContent = DIR_EMPTY_NOTE;
@@ -848,7 +1302,8 @@ async function deletePath(index) {
 }
 
 async function doDeletePath(name, url, cb) {
-  if (!confirm(`Delete \`${name}\`?`)) return;
+  const confirmed = await showConfirmDialog("Delete Item", `Are you sure you want to permanently delete \`${name}\`?`);
+  if (!confirmed) return;
   try {
     await checkAuth();
     const res = await fetch(url, {
@@ -856,13 +1311,14 @@ async function doDeletePath(name, url, cb) {
     });
     await assertResOK(res);
     cb();
+    showToast(`Deleted \`${name}\``, "success");
   } catch (err) {
     if (err.code === "readonly-descendant") {
-      alert(`Cannot delete \`${name}\`: the directory contains read-only entries`);
+      showToast(`Cannot delete \`${name}\`: the directory contains read-only entries`, "error");
     } else if (err.code === "delete-disabled") {
-      alert(`Cannot delete \`${name}\`: delete is disabled`);
+      showToast(`Cannot delete \`${name}\`: delete is disabled`, "error");
     } else {
-      alert(`Cannot delete \`${name}\`, ${err.message}`);
+      showToast(`Cannot delete \`${name}\`: ${err.message}`, "error");
     }
   }
 }
@@ -1055,17 +1511,44 @@ function extName(filename) {
   return filename.substring(dotIndex);
 }
 
-function getPathSvg(path_type) {
-  switch (path_type) {
-    case "Dir":
-      return ICONS.dir;
-    case "SymlinkFile":
-      return ICONS.symlinkFile;
-    case "SymlinkDir":
-      return ICONS.symlinkDir;
-    default:
-      return ICONS.file;
+function getPathSvg(file) {
+  if (!file) return ICONS.file;
+  if (typeof file === "string") {
+    switch (file) {
+      case "Dir": return ICONS.dir;
+      case "SymlinkFile": return ICONS.symlinkFile;
+      case "SymlinkDir": return ICONS.symlinkDir;
+      default: return ICONS.file;
+    }
   }
+
+  const path_type = file.path_type || "File";
+  if (path_type === "Dir") return ICONS.dir;
+  if (path_type === "SymlinkDir") return ICONS.symlinkDir;
+  if (path_type === "SymlinkFile") return ICONS.symlinkFile;
+
+  const name = file.name || "";
+  const ext = extName(name).toLowerCase();
+  if ([".jpg", ".jpeg", ".png", ".gif", ".svg", ".webp", ".ico", ".bmp", ".avif"].includes(ext)) {
+    return ICONS.fileImage;
+  }
+  if ([".mp4", ".mkv", ".mov", ".avi", ".webm", ".flv", ".wmv"].includes(ext)) {
+    return ICONS.fileVideo;
+  }
+  if ([".mp3", ".wav", ".flac", ".ogg", ".m4a", ".aac"].includes(ext)) {
+    return ICONS.fileAudio;
+  }
+  if ([".zip", ".tar", ".gz", ".7z", ".rar", ".bz2", ".xz"].includes(ext)) {
+    return ICONS.fileArchive;
+  }
+  if ([".pdf"].includes(ext)) {
+    return ICONS.filePdf;
+  }
+  if ([".js", ".ts", ".jsx", ".tsx", ".json", ".yaml", ".yml", ".py", ".rs", ".go", ".c", ".cpp", ".h", ".sh", ".bash", ".css", ".html", ".md", ".sql"].includes(ext)) {
+    return ICONS.fileCode;
+  }
+
+  return ICONS.file;
 }
 
 function formatMtime(mtime) {

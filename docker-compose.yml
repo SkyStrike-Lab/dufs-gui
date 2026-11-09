@@ -1,0 +1,15 @@
+services:
+  dufs:
+    image: sigoden/dufs:latest
+    container_name: dufs-gui-dev
+    restart: unless-stopped
+    ports:
+      - "5010:5000"
+    volumes:
+      - ./data:/data
+      - ./assets:/gui
+    command:
+      - /data
+      - -A
+      - --assets
+      - /gui
